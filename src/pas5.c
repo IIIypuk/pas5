@@ -1,11 +1,29 @@
 #include <stdio.h>
+#include <unistd.h>
 #include <sqlite3.h>
 #include "colors.h"
+
+const char *PAS5_VERSION = "0.1.1"; // Major, Minor, Patch
 
 int callback(void *, int, char **, char **);
 
 int main(int argc, char *argv[])
 {
+	char opt = getopt(argc, argv, "v");
+	while(opt != -1)
+	{
+		switch(opt)
+		{
+			case 'v':
+				printf("pas5 version: %s\n", PAS5_VERSION);
+				printf("by %s\n", "Alexander Popov");
+				return 0;
+
+			default:
+				break;
+		}
+	}
+
 	sqlite3 *db;
 	char *err_msg = 0;
 
