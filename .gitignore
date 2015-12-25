@@ -1,4 +1,5 @@
 *.db
 *.sqlite3
+sqlite3.def
 pas5
-pas5_*.c
+pas5.exe

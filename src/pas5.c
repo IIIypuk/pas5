@@ -1,17 +1,18 @@
 #include <stdio.h>
-#ifndef _WIN32
+#ifdef __linux__
 #include <unistd.h>
+#elif _WIN32
+#include "deps/xgetopt/xgetopt.h"
 #endif
 #include <sqlite3.h>
 #include "colors.h"
 
-const char *PAS5_VERSION = "0.1.1"; // Major, Minor, Patch
+const char *PAS5_VERSION = "0.1.2"; // Major, Minor, Patch
 
 int callback(void *, int, char **, char **);
 
 int main(int argc, char *argv[])
 {
-	#ifndef _WIN32
 	char opt = getopt(argc, argv, "v");
 	while(opt != -1)
 	{
@@ -20,13 +21,13 @@ int main(int argc, char *argv[])
 			case 'v':
 				printf("pas5 version: %s\n", PAS5_VERSION);
 				printf("by %s\n", "Alexander Popov");
+				printf("%s\n", "GitHub: https://github.com/IIIypuk/pas5");
 				return 0;
 
 			default:
 				break;
 		}
 	}
-	#endif
 
 	sqlite3 *db;
 	char *err_msg = 0;

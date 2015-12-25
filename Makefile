@@ -1,8 +1,10 @@
 CC=tcc
 
+.PHONY: all clean
+
 ifeq ($(OS),Windows_NT)
 all: sqlite3.def
-	$(CC) sqlite3.def ./src/pas5.c -o pas5.exe -I.
+	$(CC) sqlite3.def ./src/deps/xgetopt/xgetopt.c ./src/pas5.c -o pas5.exe -I.
 else
 all:
 	$(CC) ./src/pas5.c -o pas5 -lsqlite3
