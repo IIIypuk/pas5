@@ -1,5 +1,7 @@
 #include <stdio.h>
+#ifndef _WIN32
 #include <unistd.h>
+#endif
 #include <sqlite3.h>
 #include "colors.h"
 
@@ -9,6 +11,7 @@ int callback(void *, int, char **, char **);
 
 int main(int argc, char *argv[])
 {
+	#ifndef _WIN32
 	char opt = getopt(argc, argv, "v");
 	while(opt != -1)
 	{
@@ -23,6 +26,7 @@ int main(int argc, char *argv[])
 				break;
 		}
 	}
+	#endif
 
 	sqlite3 *db;
 	char *err_msg = 0;
