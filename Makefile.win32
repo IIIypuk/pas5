@@ -1,0 +1,13 @@
+CC=tcc
+
+.PHONY: all clean
+
+all: sqlite3.def
+	$(CC) sqlite3.def ./src/deps/xgetopt/xgetopt.c ./src/pas5.c -o pas5.exe -I.
+
+sqlite3.def:
+	tiny_impdef sqlite3.dll
+
+clean:
+	del /f pas5.exe
+	del /f sqlite3.def
